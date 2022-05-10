@@ -124,7 +124,7 @@ function renderQuiz(questionNumber) {
             ) {
                 score += 10;
                 indicatorElement.innerHTML = "<hr> CORRECT!";
-                indicatorElement.setAttribute("style", "color: lightgreen");
+                indicatorElement.setAttribute("style", "color: green");
             } else {
                 secondsLeft -= 10;
                 indicatorElement.innerHTML = "<hr> WRONG!";
