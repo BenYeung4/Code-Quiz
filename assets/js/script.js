@@ -166,7 +166,6 @@ function submitHighscore() {
     var initialInput = document.querySelector("input").value;
     highscore.initials = initialInput;
     highscore.score = score;
-    console.log(highscore);
     localStorage.setItem("highscore", JSON.stringify(highscore));
     mainElement.innerHTML = "";
     highScoreView.textContent = "";
@@ -177,12 +176,10 @@ function submitHighscore() {
 
 function renderHighscores() {
     var storedHighscore = JSON.parse(localStorage.getItem("highscore"));
-    console.log(storedHighscore);
+
     messageElement.innerHTML = "Highscores";
     messageElement.setAttribute("style", "color: white");
     mainElement.appendChild(messageElement);
-    console.log(storedHighscore.initials);
-    console.log(storedHighscore.score);
     highscoresElement.setAttribute("class", "highscore-element");
     highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
     messageElement.appendChild(highscoresElement);
