@@ -15,9 +15,8 @@ const highscoresElement = document.createElement("div");
 const textInputElement = document.createElement("input");
 const formButton = document.createElement("button");
 const backButton = document.createElement("button");
-const clearButton = document.createElement("button");
 
-
+//accumulation of the score
 var highscore = {
     initials: "",
     score: 0,
@@ -26,6 +25,7 @@ var highscores = [];
 var secondsLeft;
 var timerInterval;
 
+//questions list
 var questions =[
     {
         question: "How would you console log the computer's RAM?",
@@ -74,7 +74,7 @@ var questions =[
             "false"
         ],
         answer: 0,
-    }
+    },
 ];
 
 
@@ -87,8 +87,8 @@ function init() {
 }
 //when pressing the startbutton, removes the main body elements and the timer
 function startGame() {
-    startButton.remove();
-    textElement.remove();
+    startButton.remove();  //removes the start button
+    textElement.remove();  //removes the main body texts
     timerInterval = setInterval(function () {
         secondsLeft--;
         timerElement.textContent = secondsLeft;
@@ -184,14 +184,9 @@ function renderHighscores() {
     highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
     messageElement.appendChild(highscoresElement);
     backButton.textContent = "Home";
-    clearButton.textContent = "Clear";
     mainElement.appendChild(backButton);
-    mainElement.appendChild(clearButton);
 }
 
-function clear() {
-    highscoresElement.remove();
-}
 
 function home() {
     location.reload();
@@ -206,4 +201,3 @@ highScoreView.addEventListener("click", function () {
 startButton.addEventListener("click", startGame); 
 formButton.addEventListener("click", submitHighscore);
 backButton.addEventListener("click", home);
-clearButton.addEventListener("click", clear);
