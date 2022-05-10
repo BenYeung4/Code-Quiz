@@ -1,0 +1,66 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0 auto;
+    text-align: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  header {
+    padding: 20px;
+    position: relative;
+  }
+  
+  div.intro {
+    padding: 70px;
+    position: relative;
+    color: black;
+  }
+  
+  ul {
+    margin: 50px;
+  }
+  
+  button {
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 20px;
+    color: black;
+    background-color: lightsteelblue;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  li {
+    padding: 5px;
+    margin: 5px;
+    font-size: 23px;
+    border-radius: 5px;
+    border: solid;
+  }
+  
+  #indicator {
+    font-weight:bold;
+    font-size: 60px;
+  }
+  
+  .highscore-element {
+    font-size: 20px;
+    text-align: center;
+    color: black;
+    padding: 5px;
+    margin: 5px;
+    border-radius: 5px;
+    border:solid;
+    background-color: lightyellow;
+  }
+  
