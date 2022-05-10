@@ -159,7 +159,7 @@ function renderForm() {
     formButton.textContent = "SUBMIT";
     mainElement.appendChild(formElement);
     formElement.appendChild(textInputElement);
-    formElement.appendChild(formButton);
+    formElement.appendChild(formButton)
 }
 
 function submitHighscore() {
@@ -198,12 +198,12 @@ function home() {
 }
 
 highScoreView.addEventListener("click", function () {
-    textElement.remove();
-    startButton.remove();
-    renderHighscores();
+    textElement.remove();  //removes the main body text once start
+    startButton.remove();  //removes the start button once clicked
+    renderHighscores();  //shows the score bar once we click the start
 });
 
-startButton.addEventListener("click", startGame);
+startButton.addEventListener("click", startGame); 
 formButton.addEventListener("click", submitHighscore);
 backButton.addEventListener("click", home);
 clearButton.addEventListener("click", clear);

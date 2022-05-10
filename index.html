@@ -15,24 +15,23 @@
                     <div class="score">
                         <button type="button" id="highscores">View Scores</button>
                     </div>
-                    <div class="card-group">
+                    <section class="card-group">
                         <label for="time-remaining"></label>
                     <div id="timer">Time Remaining: <span id="time-remaining">60</span></div>
-                    </div>
+                    </section>
             </div>
         </nav>
 
             <!-- Main Questions Container -->
         <main id="main-content" class="container">
-                    <div>
-                        <h1>Code Quiz Challenge</h1>
-                        <p id="card-text">Answer quiz questions within the time limit.</p>
-                        <br></br>
-                        <button id="start-quiz">Start Quiz</button>
-                        <ul id="choices-list"></ul>
-                        <div id="indicator"></div>
-                    </div>
-        
+            <div class = "intro">
+                <h1>Code Quiz Challenge</h1>
+                <p id="card-text">Answer quiz questions within the time limit.</p>
+                <br></br>
+                <button id="start-quiz">Start Quiz</button> <!--start the quiz-->
+                <ul id="choices-list"></ul> <!--provides the list of questions-->
+                <div id="indicator"></div> <!--shows if the answer was right or wrong under javascript-->
+            </div>        
         </main>
 
         <script src="./assets/js/script.js"></script>
