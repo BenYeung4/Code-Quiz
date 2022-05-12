@@ -1,9 +1,9 @@
-const timerElement = document.getElementById("time-remaining");
+const timerNumber = document.getElementById("time-remaining");
 const timerView = document.getElementById("timer");
 const highScoreView = document.querySelector("#highscores");
 const startButton = document.getElementById("start-quiz");
 
-const mainElement = document.querySelector("#main-content");
+const mainContent = document.querySelector("#main-content");
 const messageElement = document.querySelector("h1");
 const textElement = document.querySelector("p");
 
@@ -23,7 +23,7 @@ var highscore = {
 };
 var highscores = [];
 var secondsLeft;
-var timerInterval;
+var timerCountdown;
 
 //questions list
 var questions =[
@@ -89,19 +89,19 @@ function init() {
 function startGame() {
     startButton.remove();  //removes the start button
     textElement.remove();  //removes the main body texts
-    timerInterval = setInterval(function () {
-        secondsLeft--;
-        timerElement.textContent = secondsLeft;
+    timerCountdown = setInterval(function () {  //setting the timer
+        secondsLeft--;  //subtracting the seconds
+        timerNumber.textContent = secondsLeft;
 
         if (secondsLeft <= 0) {
-            clearInterval(timerInterval);
+            clearInterval(timerCountdown);
         }
-    }, 1000);
+    }, 1000); //the milisecond for the timer to countdown
 
-    renderQuiz();
+    doQuiz();
 }
 
-function renderQuiz(questionNumber) {
+function doQuiz(questionNumber) {
     questionNumber = questionNumber || 0;
     var questionItem = questions[questionNumber];
     messageElement.textContent = questionItem.question;
@@ -123,18 +123,18 @@ function renderQuiz(questionNumber) {
                 parseInt(event.target.getAttribute("data-index"))
             ) {
                 score += 10;
-                indicatorElement.innerHTML = "<hr> CORRECT!";
+                indicatorElement.innerHTML = "CORRECT!";
                 indicatorElement.setAttribute("style", "color: green");
             } else {
                 secondsLeft -= 10;
-                indicatorElement.innerHTML = "<hr> WRONG!";
+                indicatorElement.innerHTML = "INCORRECT";
                 indicatorElement.setAttribute("style", "color: red");
             }
 
             questionNumber++;
 
             if (questionNumber === questions.length) {
-                clearInterval(timerInterval);
+                clearInterval(timerCountdown);
                 indicatorElement.textContent = "";
                 newChoices.remove();
                 messageElement.textContent = "Game Over!";
@@ -144,7 +144,7 @@ function renderQuiz(questionNumber) {
                 renderForm();
             } else {
                 setTimeout(function () {
-                    renderQuiz(questionNumber);
+                    doQuiz(questionNumber);
                     newChoices.remove();
                     indicatorElement.textContent = "";
                 }, 1000);
@@ -155,9 +155,9 @@ function renderQuiz(questionNumber) {
 
 function renderForm() {
     formElement.textContent = "ENTER NAME: ";
-    formElement.setAttribute("style", "color: white");
+    formElement.setAttribute("style", "color: black");
     formButton.textContent = "SUBMIT";
-    mainElement.appendChild(formElement);
+    mainContent.appendChild(formElement);
     formElement.appendChild(textInputElement);
     formElement.appendChild(formButton)
 }
@@ -167,7 +167,7 @@ function submitHighscore() {
     highscore.initials = initialInput;
     highscore.score = score;
     localStorage.setItem("highscore", JSON.stringify(highscore));
-    mainElement.innerHTML = "";
+    mainContent.innerHTML = "";
     highScoreView.textContent = "";
     timerView.textContent = "";
 
@@ -179,12 +179,12 @@ function renderHighscores() {
 
     messageElement.innerHTML = "Highscores";
     messageElement.setAttribute("style", "color: white");
-    mainElement.appendChild(messageElement);
+    mainContent.appendChild(messageElement);
     highscoresElement.setAttribute("class", "highscore-element");
     highscoresElement.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
     messageElement.appendChild(highscoresElement);
     backButton.textContent = "Home";
-    mainElement.appendChild(backButton);
+    mainContent.appendChild(backButton);
 }
 
 
