@@ -18,14 +18,9 @@
     position: relative;
   }
   
-  div.intro {
-    padding: 70px;
-    position: relative;
-    color: black;
-  }
-  
   ul {
     margin: 50px;
+    list-style: none;
   }
   
   button {
@@ -34,10 +29,6 @@
     font-size: 20px;
     color: black;
     background-color: lightsteelblue;
-  }
-  
-  ul {
-    list-style: none;
   }
   
   li {

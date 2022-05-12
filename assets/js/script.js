@@ -3,10 +3,10 @@ var highScoreView = document.querySelector("#highscores"); //stores the numerica
 var startButton = document.getElementById("start-quiz");
 
 var mainContent = document.querySelector("#main-content"); //where everything is going to be entered and stored but shown
-var messageElement = document.querySelector("h1"); //places the questions
+var messageEl = document.querySelector("h1"); //places the questions
 var textElement = document.querySelector("p");
 
-var choicesListElement = document.getElementById("choices-list");
+var choicesListEl = document.getElementById("choices-list");
 var indicatorEl = document.getElementById("indicator"); //shows answer is right or wrong
 
 //building score sheet on javascript
@@ -100,6 +100,7 @@ function startGame() {
         }else{
             timerEl.textContent = 'Game Over';
             clearInterval(timerCountdown);
+            clearInterval(doQuiz);
         }
     }, 1000); //the milisecond for the timer to countdown
     doQuiz(); //goes into the doQuiz function
@@ -107,12 +108,12 @@ function startGame() {
 
 function doQuiz(questionNumber) {
     highScoreView.remove(); //removes the high score button while playing
-    questionNumber = questionNumber || 0;
-    var questionItem = questions[questionNumber];
-    messageElement.textContent = questionItem.question; //shows the questions
+    questionNumber = questionNumber || 0; //sets the question order
+    var questionItem = questions[questionNumber];  //retrieve question
+    messageEl.textContent = questionItem.question; //shows the questions
 
     var newChoices = document.createElement("div");
-    choicesListElement.appendChild(newChoices);
+    choicesListEl.appendChild(newChoices);
 
     for (var i = 0; i < questionItem.choices.length; i++) {
         var choice = questionItem.choices[i];
@@ -141,11 +142,12 @@ function doQuiz(questionNumber) {
                 clearInterval(timerCountdown);
                 indicatorEl.textContent = "";
                 newChoices.remove(); //removes the questions
-                messageElement.textContent = "Congratulations"; //shows the finishing of the quiz
-                messageElement.appendChild(textElement);
+                messageEl.textContent = "Congratulations"; //shows the finishing of the quiz
+                messageEl.appendChild(textElement);
                 textElement.textContent = "Your final score is: " + score + " points";
 
                 enterInfo();
+
             } else {
                 setTimeout(function () {
                     doQuiz(questionNumber);
@@ -153,6 +155,8 @@ function doQuiz(questionNumber) {
                     indicatorEl.textContent = "";
                 }, 1000);
             }
+
+            
         });
     }
 }
@@ -179,12 +183,11 @@ function submitHighscore() {
 //showing the score in javascript
 function showHighscores() {
     var storedHighscore = JSON.parse(localStorage.getItem("highscore"));
-    messageElement.textContent = "Highscores";
-    messageElement.setAttribute("style", "color: white");
-    mainContent.appendChild(messageElement);
+    messageEl.textContent = "Highscore";
+    mainContent.appendChild(messageEl);
     highscoreEl.setAttribute("class", "highscore-element");
-    highscoreEl.textContent = `${storedHighscore.initials} - ${storedHighscore.score}`;
-    messageElement.appendChild(highscoreEl);
+    highscoreEl.textContent = `${storedHighscore.initials} : ${storedHighscore.score}`;
+    messageEl.appendChild(highscoreEl);
     homeBtn.textContent = "Home";
     mainContent.appendChild(homeBtn);
 }
@@ -194,12 +197,14 @@ function home() {
     location.reload(); 
 }
 
+//what is removed when clicking to view high score
 highScoreView.addEventListener("click", function () {
     textElement.remove();  //removes the main body text once start
     startButton.remove();  //removes the start button once clicked
     showHighscores();  //shows the score bar once we click the start
 });
 
+//add buttons
 startButton.addEventListener("click", startGame); 
 submitBtn.addEventListener("click", submitHighscore);
 homeBtn.addEventListener("click", home);
